@@ -29,9 +29,9 @@ Encargado de la **Ingesta Masiva y Almacenamiento de Historial**.
 ```text
 /
 ├── docker-compose.yml       # Orquestación de infraestructura
-├── esquema_relacional.sql   # DDL e inyección de datos semilla (PostgreSQL)
+├── estructura_relacional.sql   # DDL e inyección de datos semilla (PostgreSQL)
 ├── esquema_nosql.cql        # DDL orientado a consultas (ScyllaDB)
 ├── orquestador.py           # API Híbrida: Validación ACID -> Inyección BASE
-├── seeder_nosql.py          # Script de estrés para inyección asincrónica masiva
+├── inyeccion_asyncronica.py          # Script de estrés para inyección asincrónica masiva
 ├── .gitignore               # Exclusiones de Git
 └── README.md                # Documentación técnica
