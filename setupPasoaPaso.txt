@@ -1,0 +1,13 @@
+1. Intalar Python
+2. Instalar DockerDesktop
+3. Levantar la infraestructura, en la terminal ponen: docker compose up -d
+4. Postgres va a leer el .sql automaticamente, pero scylla/cassandra no, asi lo "fuerzan" poniendo en terminal:
+    docker exec -it discord_scylla cqlsh -f /esquema_nosql.cql
+5. Armar el entorno virtual en python con:
+    python -m venv venv
+    .\venv\Scripts\activate
+    pip install -r requirements.txt
+6. Por ultimo popular ScyllaDB con el inyeccion_asyncronica.py, pueden abrirlo y correrlo o directo en terminal:
+    python inyeccion_asyncronica.py
+7. Y listo, los datos no van a ser exactamente los mismos primero por que el TIMEUUID es unico, segundo por que 
+los mensajes son random de un lista de contenidos

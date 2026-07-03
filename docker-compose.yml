@@ -1,0 +1,35 @@
+services:
+  # 1. Docker RELACIONAL: PostgreSQL
+  postgres_db:
+    image: postgres:15-alpine
+    container_name: discord_psql
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password 
+      POSTGRES_DB: discord_db
+    ports:
+      - "5432:5432" 
+    volumes:
+      - psql_data:/var/lib/postgresql/data 
+      # esta ultima linea le dice a docker que corra este .sql apenas inicia
+      - ./esquema_relacional.sql:/docker-entrypoint-initdb.d/estructura_relacional.sql
+
+# para entrar en la base postgres: docker exec -it discord_psql psql -U postgres -d discord_db
+
+  # 2. Docker NoSQL: ScyllaDB
+  scylla_db:
+    image: scylladb/scylla:5.4
+    container_name: discord_scylla
+    restart: always
+    command: --developer-mode 1 --smp 1 --memory 1G 
+    ports:
+      - "9042:9042" 
+    volumes:
+      - scylla_data:/var/lib/scylla
+
+volumes:
+  psql_data:
+  scylla_data:
+
+  # para entrar la base de scylla: docker exec -it discord_scylla cqlsh
